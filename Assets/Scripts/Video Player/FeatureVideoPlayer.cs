@@ -72,6 +72,9 @@ namespace dagher.syloetest
             yield return 1;
         }
 
+        /// <summary>
+        /// Plays the video
+        /// </summary>
         public void PlayVideo() 
         {
             m_Video.Play();
@@ -79,11 +82,27 @@ namespace dagher.syloetest
             m_PauseButton.SetActive(true);
         }
 
+        /// <summary>
+        /// Pauses the video
+        /// </summary>
         public void PauseVideo() 
         {
             m_Video.Pause();
             m_PlayButton.SetActive(true);
             m_PauseButton.SetActive(false);
+        }
+
+        /// <summary>
+        /// Sets the video to fullscreen mode
+        /// </summary>
+        public void Fullscreen() 
+        {
+            //Rescale Render Texture and force phone flip to landscape
+        }
+
+        public void PlayTogether() 
+        {
+            Debug.Log("PLAYING TOGETHER");
         }
 
         private void Update()
