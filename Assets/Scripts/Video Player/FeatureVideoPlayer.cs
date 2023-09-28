@@ -53,23 +53,38 @@ namespace dagher.syloetest
                 StartCoroutine(FadeOutControls());
             }
         }
+
+        bool fadeCheck = false;
         /// <summary>
         /// Does Fade Animation for the Video Controls
         /// </summary>
         /// <returns></returns>
         IEnumerator FadeOutControls() 
         {
-            float time = 0f;
-            while (time < m_ControlsFadeOutTime) 
+            if (fadeCheck) 
             {
-                time += Time.deltaTime;
-
-                m_VideoControlsGroup.alpha = 0;//do lerp
+                yield break;
             }
 
-            m_VideoControlsGroup.gameObject.SetActive(false);
+            fadeCheck = true;
 
-            yield return 1;
+            while (fadeCheck) 
+            {
+                float time = 0f;
+                while (time < m_ControlsFadeOutTime)
+                {
+                    time += Time.deltaTime;
+
+                    m_VideoControlsGroup.alpha = 0;//do lerp
+                    yield return null;
+                }
+
+                m_VideoControlsGroup.gameObject.SetActive(false);
+                m_ShowControlsToggle = false;
+                yield return null;
+            }
+
+            fadeCheck = false;
         }
 
         /// <summary>
@@ -77,6 +92,7 @@ namespace dagher.syloetest
         /// </summary>
         public void PlayVideo() 
         {
+            StartCoroutine(FadeOutControls());
             m_Video.Play();
             m_PlayButton.SetActive(false);
             m_PauseButton.SetActive(true);
