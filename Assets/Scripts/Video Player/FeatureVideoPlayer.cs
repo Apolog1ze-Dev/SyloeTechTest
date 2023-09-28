@@ -15,6 +15,7 @@ namespace dagher.syloetest
         private bool m_ShowControlsToggle = true;
         [SerializeField] private CanvasGroup m_VideoControlsGroup;
         [SerializeField] private float m_ControlsFadeOutTime = 1f;
+        [SerializeField] private float m_ControlsInactivityTime = 1f;
         private VideoPlayer m_Video;
 
         [SerializeField] private GameObject m_PlayButton;
@@ -25,6 +26,7 @@ namespace dagher.syloetest
         private void Start()
         {
             m_Video = GetComponent<VideoPlayer>();
+            StartCoroutine(InactivityFadeOut());
         }
 
         public void OnPointerDown(PointerEventData pointerData) 
@@ -47,10 +49,36 @@ namespace dagher.syloetest
             {
                 m_VideoControlsGroup.alpha = 1;
                 m_VideoControlsGroup.gameObject.SetActive(true);
+                StartCoroutine(InactivityFadeOut());
             }
             else 
             {
                 StartCoroutine(FadeOutControls());
+            }
+        }
+
+        bool inactivityCheck = false;
+        IEnumerator InactivityFadeOut()
+        {
+            if (inactivityCheck)
+            {
+                yield break;
+            }
+
+            inactivityCheck = true;
+
+            while (inactivityCheck)
+            {
+                float time = 0f;
+                while (time < 3)
+                {
+                    time += Time.deltaTime;
+                    yield return null;
+                }
+
+                StartCoroutine(FadeOutControls());
+                inactivityCheck = false;
+                yield return null;
             }
         }
 
@@ -75,16 +103,17 @@ namespace dagher.syloetest
                 {
                     time += Time.deltaTime;
 
-                    m_VideoControlsGroup.alpha = 0;//do lerp
+                    m_VideoControlsGroup.alpha -= Time.deltaTime / m_ControlsFadeOutTime;//do lerp
                     yield return null;
                 }
 
                 m_VideoControlsGroup.gameObject.SetActive(false);
+                
                 m_ShowControlsToggle = false;
+                fadeCheck = false;
                 yield return null;
             }
-
-            fadeCheck = false;
+            
         }
 
         /// <summary>
