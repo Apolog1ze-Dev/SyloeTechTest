@@ -142,7 +142,8 @@ namespace dagher.syloetest
         /// </summary>
         public void Fullscreen() 
         {
-            //Rescale Render Texture and force phone flip to landscape
+            //play video on camera far plane to keep the controls showing on top and force mobile orientation to landscape
+            //m_Video.renderMode = VideoRenderMode.CameraFarPlane;
         }
 
         public void PlayTogether() 
