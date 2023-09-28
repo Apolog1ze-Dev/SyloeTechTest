@@ -84,16 +84,13 @@ namespace dagher.syloetest
 
         public void ShowEditor() 
         {
-            m_EditorView.SetActive(true);
-            m_ClientView.SetActive(false);
+            m_ViewAnimator.Play("SwipeLeft");
         }
 
         public void ShowClient() 
         {
-            m_EditorView.SetActive(false);
-            m_ClientView.SetActive(true);
-
             LoadPageInfo();
+            m_ViewAnimator.Play("SwipeRight");
         }
 
         private void LoadPageInfo() 
