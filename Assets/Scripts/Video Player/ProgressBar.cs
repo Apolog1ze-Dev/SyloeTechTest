@@ -32,7 +32,7 @@ namespace dagher.syloetest
         private void TrySkip(PointerEventData eventData) 
         {
             Vector2 localPoint;
-
+            //Check if touch was on the bar
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(m_ProgressBarRect, eventData.position, null, out localPoint))
             {
                 Debug.Log(localPoint.x);
@@ -41,6 +41,10 @@ namespace dagher.syloetest
             }
         }
 
+        /// <summary>
+        /// Skips Video to appropriate frame
+        /// </summary>
+        /// <param name="pPercent">Percentage of the video to skip to</param>
         private void SkipTo(float pPercent) 
         {
             Debug.Log(pPercent);
@@ -50,8 +54,10 @@ namespace dagher.syloetest
 
         private void Update()
         {
+            //Checks if video has any frames (if video exists)
             if (m_Video.frameCount > 0) 
             {
+                //Update bar size according to number of played frames
                 m_ProgressBarImage.fillAmount = (float)m_Video.frame/ (float)m_Video.frameCount;
             }
         }

@@ -11,7 +11,6 @@ namespace dagher.syloetest
         private Vector2 m_MinAnchor;
         private Vector2 m_MaxAnchor;
 
-
         void Awake()
         {
             m_RectTransform = GetComponent<RectTransform>();
