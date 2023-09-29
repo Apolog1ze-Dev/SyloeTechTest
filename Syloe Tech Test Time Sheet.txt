@@ -1,0 +1,6 @@
+ex 1 : 3h05 ---> 3h22 ~=20 mins
+ex 2 : 5h10 ---> 5h50 + 6h21 ---> 6h42 + 1h20 ---> 1h45 ~= 1h30mins
+ex 3 : not done
+ex 4 : 3h24 ---> 3h50 + 4h10 ---> 5h05 + 5h50 ---> 6h20 ~=1h50 mins
+ex 5 : 10 mins
+total : ~ 3h50mins
