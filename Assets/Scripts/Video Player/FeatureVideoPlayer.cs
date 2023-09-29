@@ -49,7 +49,7 @@ namespace dagher.syloetest
             {
                 m_VideoControlsGroup.alpha = 1;
                 m_VideoControlsGroup.gameObject.SetActive(true);
-                StartCoroutine(InactivityFadeOut());
+                //StartCoroutine(InactivityFadeOut()); 
             }
             else 
             {
@@ -57,6 +57,7 @@ namespace dagher.syloetest
             }
         }
 
+        //Add a way to check if the user is scrubbing through the video to avoid fading out while scrubbing
         bool inactivityCheck = false;
         IEnumerator InactivityFadeOut()
         {
@@ -70,7 +71,7 @@ namespace dagher.syloetest
             while (inactivityCheck)
             {
                 float time = 0f;
-                while (time < 3)
+                while (time < 5)
                 {
                     time += Time.deltaTime;
                     yield return null;
